@@ -307,7 +307,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       message0: "When game started %1",
       args0: [{
         type: "field_image",
-        src: "/assets/play.svg",
+        src: "./assets/play.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -320,7 +320,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       message0: "When game stopped %1",
       args0: [{
         type: "field_image",
-        src: "/assets/stop-sign.svg",
+        src: "./assets/stop-sign.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -337,7 +337,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
         options: keys
       },{
         type: "field_image",
-        src: "/assets/keyboard.svg",
+        src: "./assets/keyboard.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -354,7 +354,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
         options: [["TODO: add events", "TODO"]]
       },{
         type: "field_image",
-        src: "/assets/satellite.svg",
+        src: "./assets/satellite.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -371,7 +371,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
         options: [["TODO: add events", "TODO"]]
       },{
         type: "field_image",
-        src: "/assets/satellite.svg",
+        src: "./assets/satellite.svg",
         width: 20,
         height: 20,
         alt: "*"
