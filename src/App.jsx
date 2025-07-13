@@ -2,9 +2,13 @@
 import BlocklyEditor from './BlocklyEditor'
 
 function App() {
+  window.vm = {
+    runtime: {
+      
+    }
+  }
   return (
     <div>
-      <h1>Blockly Editor</h1>
       <BlocklyEditor />
     </div>
   );
