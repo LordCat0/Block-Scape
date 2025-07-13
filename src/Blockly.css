@@ -1,0 +1,10 @@
+.blocklyFlyoutButton{
+  fill: rgb(7, 105, 158);
+  cursor: pointer !important;
+}
+.blocklyFlyoutButton:hover{
+  fill: rgb(7, 116, 174);
+}
+.blocklyFlyoutButton rect{
+  stroke: rgb(5, 85, 127);
+}
