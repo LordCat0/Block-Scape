@@ -53,79 +53,14 @@ export default function BlocklyEditor({ readonly, game3d }) {
       [".", "."], ["/", "/"], ["`", "`"], ["[", "["],
       ["\\", "\\"], ["]", "]"], ["'", "'"]
     ]
-    /*
-    const toolbox = {
-      kind: "categoryToolbox",
-      contents: [{
-        kind: "category",
-        name: "Events",
-        colour: "#e3ab32",
-        contents: [{
-          kind: "block",
-          type: "events_whenstarted"
-        },{
-          kind: "block",
-          type: "events_whenstopped"
-        },{
-          kind: "block",
-          type: "events_whenkeypressed",
-          gap: 50
-        },{
-          kind: "button",
-          text: "Create event",
-          callbackKey: "createGameEvent"
-        },{
-          kind: "block",
-          type: "events_whenreceivedevent"
-        },{
-          kind: "block",
-          type: "events_callevent"
-        }]
-      },{
-        kind: "category",
-        name: "Logic",
-        colour: "#e3bd32",
-        contents: [{
-          kind: "block",
-          type: "logic_wait"
-        },{
-          kind: "block",
-          type: "logic_repeat"
-        },{
-          kind: "block",
-          type: "logic_forever"
-        },{
-          kind: "block",
-          type: "logic_if"
-        },{
-          kind: "block",
-          type: "logic_ifelse"
-        },{
-          kind: "block",
-          type: "logic_waituntil"
-        },{
-          kind: "block",
-          type: "logic_while"
-        },{
-          kind: "block",
-          type: "logic_stop"
-        }]
-      },{
-        kind: "category",
-        name: "Math",
-        colour: "#1ec721",
-        contents: [{
-          kind: "block",
-          type: "logic_add"
-        }]
-      }]
-    }
-      */
     const toolboxColors = {
       Events: "#e3ab32",
-      Logic: "#e3bd32",
-      Math: "#1ec721"
+      Logic: "#e4ba2e",
+      Math: "#16ad19",
+      Strings: "#00b963"
     }
+    const numberShadow = (inputId, defaultValue) => {return `<value name="${inputId}"><shadow type="math_number"><field name="NUM">${defaultValue}</field></shadow></value>`}
+    const stringShadow = (inputId, defaultValue) => {return `<value name="${inputId}"><shadow type="inline_string_shadow"><field name="TEXT">${defaultValue}</field></shadow></value>`}
     const toolbox = `<xml id="toolbox" style="display: none">
     <category name="Events" colour="${toolboxColors.Events}">
       <block type="events_whenstarted"></block>
@@ -135,169 +70,75 @@ export default function BlocklyEditor({ readonly, game3d }) {
       <block type="events_whenreceivedevent"></block>
       <block type="events_callevent"></block>
     </category>
+        <label text="Events"></label>
       <category name="Logic" colour="${toolboxColors.Logic}">
       <block type="logic_wait">
-        <value name="SECONDS">
-          <shadow type="math_number">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
+        ${numberShadow('SECONDS', 10)}
       </block>
       <block type="logic_repeat">
-        <value name="REPEAT">
-          <shadow type="math_number">
-            <field name="NUM">5</field>
-          </shadow>
-        </value>
+        ${numberShadow('REPEAT', 10)}
       </block>
       <block type="logic_forever"></block>
       <block type="logic_if"></block>
       <block type="logic_ifelse"></block>
+      <block type="logic_ifelsestring">
+        ${stringShadow('VALUE1', 'apple')}
+        ${stringShadow('VALUE2', 'banana')}
+      </block>
       <block type="logic_waituntil"></block>
       <block type="logic_while"></block>
       <block type="logic_stop"></block>
     </category>
     <category name="Math" colour="${toolboxColors.Math}">
       <block type="math_add">
-        <value name="NUM1">
-          <shadow type="math_number">
-            <field name="NUM">5</field>
-          </shadow>
-        </value>
-        <value name="NUM2">
-          <shadow type="math_number">
-            <field name="NUM">5</field>
-          </shadow>
-        </value>
+        ${numberShadow('NUM1', 0)}
+        ${numberShadow('NUM2', 0)}
       </block>
       <block type="math_subtract">
-        <value name="NUM1">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-        <value name="NUM2">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
+        ${numberShadow('NUM1', 0)}
+        ${numberShadow('NUM2', 0)}
       </block>
       <block type="math_multiply">
-        <value name="NUM1">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-        <value name="NUM2">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
+        ${numberShadow('NUM1', 0)}
+        ${numberShadow('NUM2', 0)}
       </block>
       <block type="math_divide" gap="50">
-        <value name="NUM1">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-        <value name="NUM2">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
+        ${numberShadow('NUM1', 0)}
+        ${numberShadow('NUM2', 0)}
       </block>
-      <block type="math_equals">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
+      <block type="math_comparison">
+        ${stringShadow('VALUE1', 50)}
+        ${stringShadow('VALUE2', 25)}
       </block>
-      <block type="math_notequals">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_greaterthan">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_lessthan">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_greaterthanorequal">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_lessthanorequal" gap="50">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_and"></block>
-      <block type="math_or"></block>
-      <block type="math_not" gap="50"></block>
+      <block type="math_boolcomparison"></block>
       <block type="math_randomnum">
-        <value name="MIN">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-        <value name="MAX">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-      </block>
-      <block type="math_letterofstring">
-        <value name="LETTER">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
-        <value name="STRING">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_joinstring">
-        <value name="VALUE1">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-        <value name="VALUE2">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
-      </block>
-      <block type="math_stringlength" gap="50">
-        <value name="STRING">
-          <shadow type="inline_string_shadow"></shadow>
-        </value>
+        ${numberShadow('MIN', 0)}
+        ${numberShadow('MAX', 10)}
       </block>
       <block type="math_mathop">
-        <value name="NUM">
-          <shadow type="math_number">
-            <field name="NUM"></field>
-          </shadow>
-        </value>
+        ${numberShadow('NUM', 10)}
+      </block>
+    </category>
+    <category name="Strings" colour="${toolboxColors.Strings}">
+      <block type="strings_newline"></block>
+      <block type="strings_letterof">
+        ${numberShadow('LETTER', 1)}
+        ${stringShadow('STRING', "apple")}
+      </block>
+      <block type="strings_letterrange">
+        ${numberShadow('START', 1)}
+        ${numberShadow('END', 3)}
+        ${stringShadow('STRING', "apple")}
+      </block>
+      <block type="strings_join">
+        ${stringShadow('STRING1', 'apple')}
+        ${stringShadow('STRING2', 'banana')}
+      </block>
+      <block type="strings_reverse">
+        ${stringShadow('STRING', "apple")}
+      </block>
+      <block type="strings_length" gap="50">
+        ${stringShadow('STRING', "apple")}
       </block>
     </category>
     </xml>
@@ -317,7 +158,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Events
     },{
       type: "events_whenstopped",
-      message0: "When game stopped %1",
+      message0: "when game stopped %1",
       args0: [{
         type: "field_image",
         src: "./assets/stop-sign.svg",
@@ -330,7 +171,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Events
     },{
       type: "events_whenkeypressed",
-      message0: "When key %1 pressed %2",
+      message0: "when key %1 pressed %2",
       args0: [{
         type: "field_dropdown",
         name: "KEY",
@@ -347,7 +188,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       nextStatement: null
     },{
       type: "events_whenreceivedevent",
-      message0: "When event %1 called %2",
+      message0: "when event %1 called %2",
       args0: [{
         type: "field_dropdown",
         name: "EVENT",
@@ -364,7 +205,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Events
     },{
       type: "events_callevent",
-      message0: "Call event %1 %2",
+      message0: "call event %1 %2",
       args0: [{
         type: "field_dropdown",
         name: "EVENT",
@@ -381,7 +222,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Events
     },{
       type: "logic_wait",
-      message0: "Wait %1 seconds",
+      message0: "wait %1 seconds",
       args0: [{
         type: "input_value",
         name: "SECONDS",
@@ -392,7 +233,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Logic
     },{
       type: "logic_repeat",
-      message0: "Repeat %1 times\n%2",
+      message0: "repeat %1 times\n%2",
       args0: [{
         type: "input_value",
         name: "REPEAT"
@@ -405,7 +246,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Logic,
     },{
       type: "logic_forever",
-      message0: "Forever\n%1",
+      message0: "forever\n%1",
       args0: [{
         type: "input_statement",
         name: "STATEMENT"
@@ -414,7 +255,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       previousStatement: null
     },{
       type: "logic_if",
-      message0: "If %1 then %2",
+      message0: "if %1 then %2",
       args0: [{
         type: "input_value",
         name: "CONDITION",
@@ -428,7 +269,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Logic
     },{
       type: "logic_ifelse",
-      message0: "If %1 then %2 else %3",
+      message0: "if %1 then %2 else %3",
       args0: [{
         type: "input_value",
         name: "CONDITION",
@@ -444,8 +285,25 @@ export default function BlocklyEditor({ readonly, game3d }) {
       previousStatement: null,
       colour: toolboxColors.Logic
     },{
+      type: "logic_ifelsestring",
+      message0: "if %1 then %2 else %3",
+      args0: [{
+        type: "input_value",
+        name: "CONDITION",
+        check: "Boolean"
+      },{
+        type: "input_value",
+        name: "VALUE1"
+      },{
+        type: "input_value",
+        name: "VALUE2"
+      }],
+      inputsInline: true,
+      output: "String",
+      colour: toolboxColors.Logic
+    },{
       type: "logic_waituntil",
-      message0: "Wait until %1",
+      message0: "wait until %1",
       args0: [{
         type: "input_value",
         name: "CONDITION",
@@ -456,7 +314,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Logic
     },{
       type: "logic_while",
-      message0: "While %1 do \n%2",
+      message0: "while %1 do \n%2",
       args0: [{
         type: "input_value",
         name: "CONDITION",
@@ -470,7 +328,7 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Logic
     },{
       type: "logic_stop",
-      message0: "Stop %1",
+      message0: "stop %1",
       args0: [{
         type: "field_dropdown",
         name: "STOP",
@@ -544,169 +402,38 @@ export default function BlocklyEditor({ readonly, game3d }) {
       colour: toolboxColors.Math,
       inputsInline: true
     },{
-      type: "math_equals",
-      message0: "%1=%2",
+      type: "math_comparison",
+      message0: "%1%2%3",
       args0: [{
         type: "input_value",
         name: "VALUE1"
       },{
-        type: "input_value",
-        name: "VALUE2"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_notequals",
-      message0: "%1≠%2",
-      args0: [{
-        type: "input_value",
-        name: "VALUE1"
+        type: "field_dropdown",
+        name: "COMPARISON",
+        options: [
+          ["=", "EQUALS"],
+          ["≠", "NOTEQUALS"],
+          [">", "GREATERTHAN"],
+          ["<", "LESSTHAN"],
+          ["≥", "GREATERTHANOREQUAL"],
+          ["≤", "LESSTHANOREQUAL"]
+        ]
       },{
         type: "input_value",
         name: "VALUE2"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },,{
-      type: "math_greaterthan",
-      message0: "%1>%2",
-      args0: [{
-        type: "input_value",
-        name: "VALUE1"
-      },{
-        type: "input_value",
-        name: "VALUE2"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_lessthan",
-      message0: "%1<%2",
-      args0: [{
-        type: "input_value",
-        name: "VALUE1"
-      },{
-        type: "input_value",
-        name: "VALUE2"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_greaterthanorequal",
-      message0: "%1≥%2",
-      args0: [{
-        type: "input_value",
-        name: "VALUE1"
-      },{
-        type: "input_value",
-        name: "VALUE2"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_lessthanorequal",
-      message0: "%1≤%2",
-      args0: [{
-        type: "input_value",
-        name: "VALUE1"
-      },{
-        type: "input_value",
-        name: "VALUE2"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_and",
-      message0: "%1and%2",
-      args0: [{
-        type: "input_value",
-        name: "CONDITION1",
-        check: "Boolean"
-      },{
-        type: "input_value",
-        name: "CONDITION2",
-        check: "Boolean"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },,{
-      type: "math_or",
-      message0: "%1or%2",
-      args0: [{
-        type: "input_value",
-        name: "CONDITION1",
-        check: "Boolean"
-      },{
-        type: "input_value",
-        name: "CONDITION2",
-        check: "Boolean"
-      }],
-      output: "Boolean",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_not",
-      message0: "not%1",
-      args0: [{
-        type: "input_value",
-        name: "CONDITION",
-        check: "Boolean"
       }],
       output: "Boolean",
       colour: toolboxColors.Math,
       inputsInline: true
     },{
       type: "math_randomnum",
-      message0: "Random number from %1 to %2",
+      message0: "random number from %1 to %2",
       args0: [{
         type: "input_value",
         name: "MIN"
       },{
         type: "input_value",
         name: "MAX"
-      }],
-      output: "Number",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_joinstring",
-      message0: "Join string %1%2",
-      args0: [{
-        type: "input_value",
-        name: "VALUE1"
-      },{
-        type: "input_value",
-        name: "VALUE2"
-      }],
-      output: "String",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_letterofstring",
-      message0: "Letter %1 of string %2",
-      args0: [{
-        type: "input_value",
-        name: "LETTER"
-      },{
-        type: "input_value",
-        name: "STRING"
-      }],
-      output: "String",
-      colour: toolboxColors.Math,
-      inputsInline: true
-    },{
-      type: "math_stringlength",
-      message0: "Length of string %1",
-      args0: [{
-        type: "input_value",
-        name: "STRING"
       }],
       output: "Number",
       colour: toolboxColors.Math,
@@ -739,15 +466,125 @@ export default function BlocklyEditor({ readonly, game3d }) {
       }],
       output: "Number",
       colour: toolboxColors.Math
+    },{
+      type: "strings_newline",
+      message0: "newline character",
+      output: "String",
+      colour: toolboxColors.Strings
+    },{
+      type: "strings_join",
+      message0: "join %1%2",
+      args0: [{
+        type: "input_value",
+        name: "STRING1"
+      },{
+        type: "input_value",
+        name: "STRING2"
+      }],
+      output: "String",
+      colour: toolboxColors.Strings,
+      inputsInline: true
+    },{
+      type: "strings_letterof",
+      message0: "letter %1 of %2",
+      args0: [{
+        type: "input_value",
+        name: "LETTER"
+      },{
+        type: "input_value",
+        name: "STRING"
+      }],
+      output: "String",
+      colour: toolboxColors.Strings,
+      inputsInline: true
+    },{
+      type: "strings_letterrange",
+      message0: "letters %1 to %2 in %3",
+      args0: [{
+        type: "input_value",
+        name: "START"
+      },{
+        type: "input_value",
+        name: "END"
+      },{
+        type: "input_value",
+        name: "STRING"
+      }],
+      output: "String",
+      colour: toolboxColors.Strings,
+      inputsInline: true
+    },{
+      type: "strings_reverse",
+      message0: "reverse %1",
+      args0: [{
+        type: "input_value",
+        name: "STRING"
+      }],
+      output: "String",
+      inputsInline: true,
+      colour: toolboxColors.Strings
+    },{
+      type: "strings_length",
+      message0: "length of %1",
+      args0: [{
+        type: "input_value",
+        name: "STRING"
+      }],
+      output: "Number",
+      colour: toolboxColors.Strings,
+      inputsInline: true
     }])
     Blockly.Blocks['inline_string_shadow'] = {
-  init: function() {
-    this.appendDummyInput()
-      .appendField(new Blockly.FieldTextInput(""), "TEXT");
-    this.setOutput(true, "String");
-    this.setColour(160);
-  }
-};
+      init: function() {
+        this.appendDummyInput()
+          .appendField(new Blockly.FieldTextInput(""), "TEXT");
+        this.setOutput(true, "String");
+        this.setColour(160);
+      }
+    };
+    Blockly.Blocks['math_boolcomparison'] = {
+      init: function () {
+        this.appendValueInput('A')
+          .setCheck('Boolean')
+          .appendField('');
+        this.appendDummyInput('COMPARISON')
+          .appendField(new Blockly.FieldDropdown([
+            ['and', 'AND'],
+            ['or', 'OR'],
+            ['not', 'NOT']
+          ], this.updateShape.bind(this)), 'COMPARISON');
+        this.appendValueInput('B')
+          .setCheck('Boolean')
+          .appendField('');
+        this.setOutput(true, 'Boolean');
+        this.setColour(toolboxColors.Math);
+        this.setInputsInline(true)
+        this.updateShape(this.getFieldValue('COMPARISON'));
+      },
+      mutationToDom: function () {
+        const container = document.createElement('mutation');
+        container.setAttribute('comparison', this.getFieldValue('COMPARISON'));
+        return container;
+      },
+      domToMutation: function (xmlElement) {
+        this.updateShape(xmlElement.getAttribute('comparison'));
+      },
+      updateShape: function (op) {
+        if (op === 'NOT') {
+          if (this.getInput('A')) {
+            this.removeInput('A');
+          }
+        } else {
+          if (!this.getInput('A')) {
+            this.appendValueInput('A')
+              .setCheck('Boolean')
+              .appendField('');
+            this.moveInputBefore('A', 'COMPARISON');
+          }
+        }
+      }
+    };
+
     const workspace = Blockly.inject(blocklyRef.current, {
       readOnly: readonly,
       toolbox: toolbox,
@@ -780,6 +617,8 @@ export default function BlocklyEditor({ readonly, game3d }) {
     workspace.registerButtonCallback('createGameEvent', (button) => {
       alert('this would make a popup to make a game event.')
     })
+    window.Blockly = Blockly
+    window.BlocklyWorkspace = workspace
   })
   return (
     <div
