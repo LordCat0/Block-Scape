@@ -25,43 +25,6 @@ math
 
 */
 
-let previousSelectedCategory = null;
-
-function fixFlyoutWidth(customWidth, workspace) {
-  const flyout = workspace.getFlyout();
-  const flyoutWorkspace = flyout.getWorkspace();
-
-  // Directly modify the flyout SVG background
-  const background = flyout.svgGroup_.querySelector('.blocklyFlyoutBackground');
-  if (background) {
-    background.setAttribute('width', customWidth);
-  }
-
-  // Force the flyout to recompute its scroll metrics
-  flyout.setMetrics_({
-    viewHeight: flyoutWorkspace.getMetrics().viewHeight,
-    viewWidth: customWidth,
-    contentHeight: flyoutWorkspace.getMetrics().contentHeight,
-    contentWidth: flyoutWorkspace.getMetrics().contentWidth,
-    absoluteTop: 0,
-    absoluteLeft: 0
-  });
-
-  // Optional: Resize workspace to apply layout
-  Blockly.svgResize(workspace);
-}
-
-function onCategorySelected(category) {
-  const newId = 'circle-' + category.name_.toLowerCase().replace(/\s/g, '');
-  if (previousSelectedCategory) {
-    const oldCircle = document.getElementById(previousSelectedCategory);
-    if (oldCircle) oldCircle.style.filter = 'brightness(0.5)'
-  }
-  const newCircle = document.getElementById(newId);
-  if (newCircle) oldCircle.style.filter = ''
-  previousSelectedCategory = newId;
-}
-
 
 export default function BlocklyEditor({ readonly, context }) {
   const blocklyRef = useRef(null)
@@ -178,13 +141,11 @@ export default function BlocklyEditor({ readonly, context }) {
         },
         disable: false
     })
-    workspace.addChangeListener((e) => {
-  if (e.type === Blockly.Events.TOOLBOX_ITEM_SELECT) {
-    setTimeout(() => fixFlyoutWidth(275, workspace), 50);
-  }
-});
     workspace.registerButtonCallback('createGameEvent', (button) => {
       alert('this would make a popup to make a game event.')
+    })
+    workspace.registerButtonCallback('openObjectSelectingDocs', (button) => {
+      alert('This would open a guide on how to select game objects')
     })
     window.Blockly = Blockly
     window.BlocklyWorkspace = workspace

@@ -171,7 +171,20 @@ export function clientToolbox(){
           </block>
           <block type="json_joinarray">${stringShadow('JOIN', ",")}</block>
         </category>
-        <category name="Objects" colour="${toolboxColors.Objects}"></category>
+        <category name="Objects" colour="${toolboxColors.Objects}">
+          <label text="Objects"></label>
+          <button text="How to select game objects" callbackKey="openObjectSelectingDocs"></button>
+          <block type="objects_new"></block>
+          <block type="objects_select" gap="50">${stringShadow('SELECTOR', 'project/block')}</block>
+          <block type="objects_setattribute">
+            ${stringShadow('ATTRIBUTE', 'name')}
+            ${stringShadow('VALUE', 'My object')}
+          </block>
+          <block type="objects_getattribute">${stringShadow('ATTRIBUTE', 'name')}</block>
+          <block type="objects_getattributejson" gap="50"></block>
+          <block type="objects_append"></block>
+          <block type="objects_delete"></block>
+        </category>
         </xml>
     `
 }
@@ -845,6 +858,95 @@ export function clientBlockDefinitions(){
       colour: toolboxColors.Json,
       output: "String",
       inputsInline: true
+    },{
+      type: "objects_new",
+      message0: "new object %1",
+      args0: [{
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [["TODO: add object types", "TODO"]]
+      }],
+      colour: toolboxColors.Objects,
+      output: "Object"
+    },{
+      type: "objects_select",
+      message0: "select object %1",
+      args0: [{
+        type: "input_value",
+        name: "SELECTOR"
+      }],
+      colour: toolboxColors.Objects,
+      output: "Object",
+      inputsInline: true
+    },{
+      type: "objects_setattribute",
+      message0: "set attribute %1 to %2 in %3",
+      args0: [{
+        type: 'input_value',
+        name: "ATTRIBUTE"
+      },{
+        type: 'input_value',
+        name: "VALUE"
+      },{
+        type: "input_value",
+        name: "OBJECT",
+        check: "Object"
+      }],
+      colour: toolboxColors.Objects,
+      inputsInline: true,
+      previousStatement: null,
+      nextStatement: null
+    },{
+      type: "objects_getattribute",
+      message0: "get attribute %1 from %2",
+      args0: [{
+        type: 'input_value',
+        name: "ATTRIBUTE"
+      },{
+        type: 'input_value',
+        name: "OBJECT",
+        check: "Object"
+      }],
+      colour: toolboxColors.Objects,
+      output: "String",
+      inputsInline: true
+    },{
+      type: "objects_getattributejson",
+      message0: "get attribute json from %1",
+      args0: [{
+        type: "input_value",
+        name: "OBJECT",
+        check: "Object"
+      }],
+      output: "Json",
+      colour: toolboxColors.Objects
+    },{
+      type: "objects_append",
+      message0: "append %1 to %2",
+      args0: [{
+        type: 'input_value',
+        name: "OBJECT",
+        check: "Object"
+      },{
+        type: 'input_value',
+        name: "APPEND",
+        check: "Object"
+      }],
+      colour: toolboxColors.Objects,
+      nextStatement: null,
+      previousStatement: null,
+      inputsInline: true
+    },{
+      type: "objects_delete",
+      message0: "delete %1",
+      args0: [{
+        type: "input_value",
+        name: "OBJECT",
+        check: "Object"
+      }],
+      colour: toolboxColors.Objects,
+      nextStatement: null,
+      previousStatement: null
     }]
 }
 

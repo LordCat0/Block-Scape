@@ -105,7 +105,7 @@ class CustomConstantProvider extends Blockly.zelos.ConstantProvider {
                 return this.ROUNDED;
             } else if (checks && checks.includes('Json')) {
                 return this.PLUS;
-            } else if (checks && checks.includes('Array')) {
+            } else if (checks && checks.includes('Object')) {
                 return this.SQUARED;
             }
         }
