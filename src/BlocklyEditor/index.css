@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.blocklyFlyoutButton{
+  fill: rgb(7, 105, 158);
+  cursor: pointer !important;
+}
+.blocklyFlyoutButton:hover{
+  fill: rgb(7, 116, 174);
+}
+.blocklyFlyoutButton rect{
+  stroke: rgb(5, 85, 127);
+}
+
+/* Remove or change Zelos selection glow filter */
+.blocklyBlockHighlight {
+  filter: none !important;
+  stroke: #ffffff !important;       /* Your custom glow color */
+  stroke-width: 3px !important;
+}
+
+/* Optional: tweak the selected block path stroke */
+.blocklySelected > .blocklyPath {
+  stroke: #ffffff !important;
+  stroke-width: 3px !important;
+  filter: none !important;
+}
+
+.blocklyToolbox{
+  padding: 10px;
+  overflow: hidden;
+}
+
+.categoryBubble{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 2px;
+  padding-right: 0;
+  border-radius: 50%;
+  border: 1px solid;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
+.blocklyToolboxCategory{
+  border-left: none !important;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
+
+.blocklyToolboxCategory{
+  cursor: pointer;
+
+  border-radius: 5px;
+  transition: background-color 75ms ease-out;
+}
+
+.blocklyToolboxCategoryLabel{
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.blocklyFlyoutLabelText{
+  font-size: 19px !important;
+}
