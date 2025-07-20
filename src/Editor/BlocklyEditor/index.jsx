@@ -155,8 +155,6 @@ export default function BlocklyEditor({readonly, context}) {
     className='blocklyDiv'
     ref={blocklyRef}
     style={{
-      width:'100vw',
-      height:'100vh',
       display: 'absolute',
       margin: 0,
       padding: 0}}

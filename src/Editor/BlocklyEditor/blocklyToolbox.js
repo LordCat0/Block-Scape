@@ -195,7 +195,7 @@ export function clientBlockDefinitions(){
       message0: "When game started %1",
       args0: [{
         type: "field_image",
-        src: "./assets/play.svg",
+        src: "./assets/blockIcons/play.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -208,7 +208,7 @@ export function clientBlockDefinitions(){
       message0: "when game stopped %1",
       args0: [{
         type: "field_image",
-        src: "./assets/stop-sign.svg",
+        src: "./assets/blockIcons/stop-sign.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -225,7 +225,7 @@ export function clientBlockDefinitions(){
         options: keys
       },{
         type: "field_image",
-        src: "./assets/keyboard.svg",
+        src: "./assets/blockIcons/keyboard.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -242,7 +242,7 @@ export function clientBlockDefinitions(){
         options: [["TODO: add events", "TODO"]]
       },{
         type: "field_image",
-        src: "./assets/satellite.svg",
+        src: "./assets/blockIcons/satellite.svg",
         width: 20,
         height: 20,
         alt: "*"
@@ -259,7 +259,7 @@ export function clientBlockDefinitions(){
         options: [["TODO: add events", "TODO"]]
       },{
         type: "field_image",
-        src: "./assets/satellite.svg",
+        src: "./assets/blockIcons/satellite.svg",
         width: 20,
         height: 20,
         alt: "*"

@@ -60,6 +60,7 @@ export default function ToolBar() {
 
   return (
     <div className="toolbar">
+      <img src='assets/logo.svg' className='logo'></img>
       <ToolbarButton onClick={(e) => handleClick(e, 'file')}>File</ToolbarButton>
       <ToolbarButton onClick={(e) => handleClick(e, 'edit')}>Edit</ToolbarButton>
 
