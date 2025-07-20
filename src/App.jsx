@@ -1,15 +1,10 @@
 //simport { useEffect, useRef } from 'react';
-import BlocklyEditor from './BlocklyEditor'
+import Editor from "./Editor"
 
 function App() {
-  window.vm = {
-    runtime: {
-      
-    }
-  }
   return (
-    <div>
-      <BlocklyEditor />
+    <div className="app">
+      <Editor />
     </div>
   );
 }

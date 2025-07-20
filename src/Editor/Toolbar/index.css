@@ -1,0 +1,44 @@
+.toolbar{
+    width: 100vw;
+    height: 25px;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-shrink: 0;
+}
+
+.toolbarButton{
+    cursor: pointer;
+    width: max-content;
+    padding-left: 5px;
+    margin-right: 10px;
+    padding-right: 5px;
+    border-radius: 5px;
+    font-size: medium;
+    color: #dedede;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+}
+
+.toolbarButton:hover{
+    background-color: #232323;
+}
+
+.dropdown{
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background-color: rgb(38, 38, 38);
+    color: white;
+    z-index: 1000;
+    font-family: sans-serif;
+}
+
+.dropdown > .dropdownOption{
+    cursor: pointer;
+    padding: 10px;
+}
+
+.dropdown > .dropdownOption:hover{
+    background-color: rgb(48, 48, 48);
+}

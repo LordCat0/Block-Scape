@@ -26,7 +26,7 @@ math
 */
 
 
-export default function BlocklyEditor({ readonly, context }) {
+export default function BlocklyEditor({readonly, context}) {
   const blocklyRef = useRef(null)
   const workspaceRef = useRef(null)
 

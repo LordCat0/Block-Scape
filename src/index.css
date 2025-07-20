@@ -6,3 +6,9 @@ html body{
   --webkt-user-select: none;
   -webkit-tap-highlight-color: transparent
 }
+
+.app{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
