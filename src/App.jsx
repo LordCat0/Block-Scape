@@ -1,5 +1,6 @@
 //simport { useEffect, useRef } from 'react';
 import Editor from "./Editor"
+import './Vm'
 
 function App() {
   return (

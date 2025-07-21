@@ -1,0 +1,18 @@
+{
+    "objects": {
+        "a": {
+            "type": "blockscript",
+            "parent": ":frontside",
+            "blocks": []
+        },
+        "b": {
+            "type": "texture",
+            "parent": "a"
+        }
+    },
+    "meta": {
+        "title": "My project",
+        "timestamp": 1753061842,
+        "editor": "dev.0.0.0"
+    }
+}

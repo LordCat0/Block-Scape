@@ -77,9 +77,14 @@ export default function ToolBar() {
         >
           {activeButton === 'file' && (
             <>
-              <DropdownOption onClick={() => alert('Coming soon')}>New project</DropdownOption>
-              <DropdownOption onClick={() => alert('Coming soon')}>Load project</DropdownOption>
-              <DropdownOption onClick={() => alert('Coming soon')}>Save as</DropdownOption>
+              <DropdownOption onClick={() => window.Blockly.serialization.workspaces.load({blocks: {languageVersion: 0, blocks: []}}, BlocklyWorkspace)}>New project</DropdownOption>
+              <DropdownOption onClick={async() => {
+                window.vm.loadProject(await window.vm.util.openFile('.bs'))
+              }}>Load project</DropdownOption>
+              <DropdownOption onClick={() => {
+                if(window.confirm("WARNING: block-scape is still in development, we can't guarantee projects will load in the future! Would you like to continue?"))
+                    window.vm.saveWorkspace()
+                }}>Save as</DropdownOption>
             </>
           )}
           {activeButton === 'edit' && (
